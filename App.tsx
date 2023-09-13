@@ -1,8 +1,7 @@
 import {Text, TextInput, Button} from '@react-native-material/core';
 import React, {useState} from 'react';
-import {View, FlatList} from 'react-native';
+import {View, ScrollView} from 'react-native';
 import axios from 'axios';
-import {ScrollView} from 'react-navigation';
 
 const apiUrl =
   'https://sci01-ter-jne.ufca.edu.br/cppgi/api/avaliacoes/2370/1/TODAS';
@@ -49,9 +48,13 @@ function App(): JSX.Element {
       <Text>CONPESQ 2023</Text>
       <Button title="Buscar Trabalhos" onPress={fetchData} />
       <ScrollView>
-        {data.map(item => {
-          return <ResearchItem research={item} />;
-        })}
+        {data ? (
+          data.map(item => {
+            return ResearchItem(item);
+          })
+        ) : (
+          <Text>Trabalhos não encontrados</Text>
+        )}
       </ScrollView>
     </View>
   );
