@@ -17,8 +17,17 @@ type ResearchType = {
   aprovados: number;
   situacao: number;
 };
+function FiltrarTrabalhos(): JSX.Element {
+  return (
+    <View>
+      <TextInput />
+      <Button title="Filtrar" />
+      <Button title="Cancelar" />
+    </View>
+  );
+}
 
-function ResearchItem(research: ResearchType) {
+function ResearchItem(research: ResearchType): JSX.Element {
   return (
     <View>
       <Text>{research.id}</Text>
@@ -47,6 +56,7 @@ function App(): JSX.Element {
     <View>
       <Text>CONPESQ 2023</Text>
       <Button title="Buscar Trabalhos" onPress={fetchData} />
+      <FiltrarTrabalhos />
       <ScrollView>
         {data ? (
           data.map(item => {
