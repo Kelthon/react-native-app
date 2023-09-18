@@ -1,4 +1,4 @@
-import {Text, TextInput, Button} from '@react-native-material/core';
+import {Text, TextInput, Button, Flex, Box, Spacer, Surface, Divider} from '@react-native-material/core';
 import React, {useState} from 'react';
 import {View, ScrollView} from 'react-native';
 import axios from 'axios';
@@ -30,10 +30,29 @@ function FiltrarTrabalhos(): JSX.Element {
 function ResearchItem(research: ResearchType): JSX.Element {
   return (
     <View>
-      <Text>{research.id}</Text>
-      <Text>{research.titulo}</Text>
-      <Text>{research.autores}</Text>
+      <Flex>
+        <Box h={30} style={{backgroundColor:'lightblue'}}>
+          <Spacer>
+           <Text variant="subtitle1">Título:</Text>
+          </Spacer>
+        </Box>
+        <Box h ={120}>
+          <Text variant="h6">[{research.id}] {research.titulo}</Text>
+        </Box>
+        <Box h={30} style={{backgroundColor:'lightblue'}}>
+          <Text variant="subtitle1">Autores:</Text>
+        </Box>
+      </Flex>
+      <Box>
+      <Surface elevation={2} category="medium" style={{width:400, height:200}}>
+      <Text>{research.autores.split(',').map(a => {
+        return a;
+      })}</Text>
+      <Divider style={{marginTop:60}} leadingInset={16}>
       <Text>{research.area}</Text>
+      </Divider>
+      </Surface>
+      </Box>
       <Text>{research.finalizados}</Text>
       <Text>{research.esperando}</Text>
       <Text>{research.reprovados}</Text>
